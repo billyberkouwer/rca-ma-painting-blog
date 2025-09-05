@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import './page-scroll-counter.scss';
-import Link from 'next/link';
 
 export default function PageScrollCounter() {
   const [scrollPercentage, setScrollPercentage] = useState(0);

@@ -45,7 +45,8 @@ export const ImageType = defineType({
       title: "Alt",
     }),
     defineField({
-      type: "text",
+      type: "array",
+      of: [{ type: "block" }],
       name: "caption",
       title: "Caption",
     })
