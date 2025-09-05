@@ -28,7 +28,6 @@ export default function RootLayout({
         <Navbar />
         {children}
         <PageScrollCounter />
-        <LandingText />     
       </body>
     </html>
   );
