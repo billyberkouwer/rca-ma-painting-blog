@@ -1,0 +1,124 @@
+.landing-element__wrapper {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+
+
+.landing-element__wrapper.landing-hidden {
+    opacity: 0;
+    visibility: hidden;
+
+    h1 {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        font-weight: 400;
+        color: #000;
+        mix-blend-mode: difference;
+    }
+}
+
+.landing-element__container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 0;
+    filter: blur(30px);
+}
+
+.landing-element__grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, transform 0.3s ease;
+    animation: randomSize 5s infinite ease-in-out;
+}
+
+.landing-element__grid-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.landing-element__grid-item.hidden {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes randomSize {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    75% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Alternative approach using CSS custom properties for more control */
+.landing-element__grid-item:nth-child(odd) {
+    animation: randomSizeOdd 5s infinite ease-in-out;
+}
+
+.landing-element__grid-item:nth-child(even) {
+    animation: randomSizeEven 5s infinite ease-in-out;
+    animation-delay: 2.5s;
+}
+
+@keyframes randomSizeOdd {
+    0%, 100% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.04);
+    }
+    40% {
+        transform: scale(1.06);
+    }
+    60% {
+        transform: scale(1.08);
+    }
+    80% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes randomSizeEven {
+    0%, 100% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.04);
+    }
+    30% {
+        transform: scale(1.06);
+    }
+    45% {
+        transform: scale(1.08);
+    }
+    60% {
+        transform: scale(1.02);
+    }
+    75% {
+        transform: scale(1.04);
+    }
+    90% {
+        transform: scale(1.02);
+    }
+}
+

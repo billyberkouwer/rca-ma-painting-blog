@@ -6,10 +6,7 @@ export default function Navbar() {
             <ul className="navbar__container">
                 <li className="page-title">
                     <Link href="/">
-                        <div className="dark-theme">RCA MA Painting Blog</div>
-                    </Link>
-                    <Link href="https://billyberkouwer.dev">
-                        <div className="dark-theme">Run by Billy Myles-Berkouwer</div>
+                        <h1 className="dark-theme">RCA MA Painting 2025 / 2026</h1>
                     </Link>
                 </li>
             </ul>

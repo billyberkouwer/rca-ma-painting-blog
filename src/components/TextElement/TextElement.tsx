@@ -1,8 +1,11 @@
 import { PortableText } from "next-sanity"
+import "./text-element.scss"
+import { extractDate } from "@/helpers";
 
 type TextEl = {
     _type: "textBlock";
     _ref: string;
+    _updatedAt: string;
     title: string | null;
     text: Array<{
         children?: Array<{
@@ -30,6 +33,7 @@ export default function TextElement({ textEl }: { textEl: TextEl }) {
             <div className="text-element__container">
                 {textEl?.title ? <h2>{textEl.title}</h2> : null}
                 <PortableText value={textEl.text || []} />
+                <span className="text-element__updated-at">Updated on {extractDate(textEl?._updatedAt)}</span>
             </div>
         </div>
     )

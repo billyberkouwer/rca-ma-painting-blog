@@ -7,6 +7,23 @@
     img {
         object-fit: contain;
         object-position: left;
+        width: auto;
+        height: auto;
+        position: relative;
     }
     // max-width: 80vw;
+}
+
+.image-element__wrapper {
+    margin-bottom: 5rem;
+}
+
+.image__caption {
+    margin-top: 0.1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+
+    p {
+        margin: 0;
+    }
 }

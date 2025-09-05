@@ -3,6 +3,7 @@ import { SanityImageMetadata, SanityAssetSourceData } from "@/types/sanityTypes"
 import "./image-element.scss";
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css';
+import { extractDate } from "@/helpers";
 
 export default function ImageElement({ imageEl }: {
     imageEl: ImageEl
@@ -12,13 +13,14 @@ export default function ImageElement({ imageEl }: {
             <div className="image-element__wrapper">
                 <div className="image-element__container">
                     <div className="image__wrapper" style={{ aspectRatio: imageEl.image?.metadata?.dimensions?.aspectRatio || 1 }}>
-                        <Zoom zoomImg={{sizes: "100%", src: imageEl.image?.url}} zoomMargin={20} >
-                            <Image src={imageEl.image?.url} alt={imageEl.alt || "Missing alt text here, sorry!"} fill sizes="(max-width: 768px) 100vw, 50vw" quality={50} />
+                        <Zoom zoomImg={{ sizes: "100%", src: imageEl.image?.url }} zoomMargin={20} >
+                            <Image style={{aspectRatio: imageEl.image?.metadata?.dimensions?.aspectRatio || 1}} src={imageEl.image?.url} alt={imageEl.alt || "Missing alt text here, sorry!"} fill sizes="(max-width: 768px) 100vw, 50vw" quality={50} />
                         </Zoom>
                     </div>
                     <div className="image__caption">
                         <p>{imageEl.caption}</p>
                     </div>
+                    <span className="text-element__updated-at">Updated on {extractDate(imageEl._updatedAt)}</span>
                 </div>
             </div>
         )
@@ -31,6 +33,7 @@ type ImageEl =
     {
         _type: "imageBlock";
         _ref: string;
+        _updatedAt: string;
         image: {
             _id: string;
             _type: "sanity.imageAsset";

@@ -1,0 +1,30 @@
+.page-scroll-counter {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    display: block;
+    width: fit-content;
+    margin-bottom: 0.1rem;
+}
+
+.page-scroll-counter__wrapper {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    a {
+        display: block;
+        background-color: #000;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .dark-theme {
+        background-color: #000;
+        color: #fff;
+    }
+}

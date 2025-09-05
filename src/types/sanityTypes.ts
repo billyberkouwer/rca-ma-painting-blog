@@ -247,7 +247,7 @@ export type AllSanitySchemaTypes = PageMeta | ImageBlock | TextBlock | Index | S
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: homepageQuery
-// Query: *[_type == "index"][0] {    ...,    "elements": elements[] {        _type,        _ref,        ...@-> {            _type,            ...select(                _type == "imageBlock" => {                    "image": image.asset->{                        ...                    },                    alt,                    caption                },                _type == "textBlock" => {                    title,                    text                }            )        }    }  }
+// Query: *[_type == "index"][0] {    ...,    "elements": elements[] {        _type,        _ref,        ...@-> {            _type,            ...select(                _type == "imageBlock" => {                    _updatedAt,                    "image": image.asset->{                        ...                    },                    alt,                    caption                },                _type == "textBlock" => {                    _updatedAt,                    title,                    text                }            )        }    }  }
 export type HomepageQueryResult = {
   _id: string;
   _type: "index";
@@ -258,6 +258,7 @@ export type HomepageQueryResult = {
   elements: Array<{
     _type: "imageBlock";
     _ref: string;
+    _updatedAt: string;
     image: {
       _id: string;
       _type: "sanity.imageAsset";
@@ -285,6 +286,7 @@ export type HomepageQueryResult = {
   } | {
     _type: "textBlock";
     _ref: string;
+    _updatedAt: string;
     title: string | null;
     text: Array<{
       children?: Array<{
@@ -365,7 +367,7 @@ export type HomepageMetaQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"index\"][0] {\n    ...,\n    \"elements\": elements[] {\n        _type,\n        _ref,\n        ...@-> {\n            _type,\n            ...select(\n                _type == \"imageBlock\" => {\n                    \"image\": image.asset->{\n                        ...\n                    },\n                    alt,\n                    caption\n                },\n                _type == \"textBlock\" => {\n                    title,\n                    text\n                }\n            )\n        }\n    }\n  }": HomepageQueryResult;
+    "*[_type == \"index\"][0] {\n    ...,\n    \"elements\": elements[] {\n        _type,\n        _ref,\n        ...@-> {\n            _type,\n            ...select(\n                _type == \"imageBlock\" => {\n                    _updatedAt,\n                    \"image\": image.asset->{\n                        ...\n                    },\n                    alt,\n                    caption\n                },\n                _type == \"textBlock\" => {\n                    _updatedAt,\n                    title,\n                    text\n                }\n            )\n        }\n    }\n  }": HomepageQueryResult;
     "*[_type == \"index\"][0] {\n     \"pageMeta\": pageMeta{\n        keywords,\n        _updatedAt,\n        title,\n        description,\n        ogType,\n        ogTitle,\n        ogDescription,\n        \"ogImage\": image.asset->\n     }\n    }\n  ": HomepageMetaQueryResult;
   }
 }

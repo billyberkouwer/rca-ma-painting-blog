@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar/Navbar";
+import PageScrollCounter from "@/components/PageHeightCounter/PageScrollCounter";
 import localFont from "next/font/local";
 import "./global.scss"
+import LandingText from "@/components/LandingElement/LandingText";
 
 const NimbusCondensed = localFont({
   src: "./fonts/NimbusSanL-ReguCond.ttf",
@@ -25,6 +27,8 @@ export default function RootLayout({
       <body className={`${NimbusCondensed.variable} ${Nimbus.variable}`}>
         <Navbar />
         {children}
+        <PageScrollCounter />
+        <LandingText />     
       </body>
     </html>
   );

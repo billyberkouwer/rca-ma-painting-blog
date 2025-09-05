@@ -9,6 +9,7 @@ export const homepageQuery = defineQuery(`*[_type == "index"][0] {
             _type,
             ...select(
                 _type == "imageBlock" => {
+                    _updatedAt,
                     "image": image.asset->{
                         ...
                     },
@@ -16,6 +17,7 @@ export const homepageQuery = defineQuery(`*[_type == "index"][0] {
                     caption
                 },
                 _type == "textBlock" => {
+                    _updatedAt,
                     title,
                     text
                 }
