@@ -13,7 +13,6 @@ export async function generateMetadata() {
   const metadata = data?.pageMeta;
   
   return {
-
     robots: {
       index: true,
       follow: true,

@@ -1,8 +1,8 @@
 import ImageElement from "../ImageElement/ImageElement"
 import TextElement from "../TextElement/TextElement"
-import { IndexQueryResult } from "@/types/sanityTypes";
+import { HomepageQueryResult } from "@/types/sanityTypes";
 
-type ElementData = NonNullable<NonNullable<IndexQueryResult>['elements']>[number];
+type ElementData = NonNullable<NonNullable<HomepageQueryResult>['elements']>[number];
 
 export default function ElementGenerator({ dataEl }: { dataEl: ElementData }) {
 

@@ -9,7 +9,9 @@ export const homepageQuery = defineQuery(`*[_type == "index"][0] {
             _type,
             ...select(
                 _type == "imageBlock" => {
-                    "image": image.asset->,
+                    "image": image.asset->{
+                        ...
+                    },
                     alt,
                     caption
                 },
