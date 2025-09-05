@@ -24,10 +24,8 @@ export async function POST(req: NextRequest) {
             const message = 'Bad Request'
             return new Response(JSON.stringify({ message, body }), { status: 400 })
         }
-
-        revalidatePath(`/`);
-        // Always revalidate the sitemap when any content changes
-        // revalidatePath("/sitemap.xml");
+        console.log("Revalidating path");
+        revalidatePath("/");
 
         const message = `Updated routes`
         return NextResponse.json({ body, message })
