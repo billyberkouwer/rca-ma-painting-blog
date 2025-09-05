@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
         revalidatePath(`/`);
         // Always revalidate the sitemap when any content changes
-        revalidatePath("/sitemap.xml");
+        // revalidatePath("/sitemap.xml");
 
         const message = `Updated routes`
         return NextResponse.json({ body, message })
