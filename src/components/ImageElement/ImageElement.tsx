@@ -8,7 +8,6 @@ import { extractDate } from "@/helpers";
 export default function ImageElement({ imageEl }: {
     imageEl: ImageEl
 }) {
-    console.log(imageEl);
     if (imageEl.image?.url) {
         return (
             <div className="image-element__wrapper">

@@ -55,8 +55,6 @@ export default async function Home() {
     return null;
   }
 
-  console.log(data);
-
   return (
     <PageContentWrapper>
       {data.elements?.map((el, i) => (

@@ -2,13 +2,14 @@ import { defineQuery } from "next-sanity";
 
 export const homepageQuery = defineQuery(`*[_type == "index"][0] {
     ...,
-    "elements": elements[] {
+    "elements": elements[] | order(@->._createdAt desc) {
         _type,
         _ref,
         ...@-> {
             _type,
             ...select(
                 _type == "imageBlock" => {
+                    _createdAt,
                     _updatedAt,
                     "image": image.asset->{
                         ...
@@ -17,6 +18,7 @@ export const homepageQuery = defineQuery(`*[_type == "index"][0] {
                     caption
                 },
                 _type == "textBlock" => {
+                    _createdAt,
                     _updatedAt,
                     title,
                     text
