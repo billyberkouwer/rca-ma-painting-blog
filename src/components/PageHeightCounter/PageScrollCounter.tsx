@@ -9,7 +9,7 @@ export default function PageScrollCounter() {
   useEffect(() => {
     const handleScroll = () => {
       // Get the total height of the document
-      const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
 
       // Get the current scroll position
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -22,6 +22,7 @@ export default function PageScrollCounter() {
 
     // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
 
     // Call once to set initial value
     handleScroll();
@@ -29,6 +30,7 @@ export default function PageScrollCounter() {
     // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 

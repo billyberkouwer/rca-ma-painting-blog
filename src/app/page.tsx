@@ -58,7 +58,7 @@ export default async function Home() {
   return (
     <PageContentWrapper>
       {data.elements?.map((el, i) => (
-        <ElementGenerator key={el._ref + i} dataEl={el} />
+        <ElementGenerator key={el._ref + i} dataEl={el} isFirst={i === 0} />
       ))}
     </PageContentWrapper>
   );

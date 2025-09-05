@@ -6,24 +6,26 @@ import 'react-medium-image-zoom/dist/styles.css';
 import { extractDate } from "@/helpers";
 import { PortableText } from "@portabletext/react";
 
-export default function ImageElement({ imageEl }: {
-    imageEl: ImageEl
+export default function ImageElement({ imageEl, isFirst = false }: {
+    imageEl: ImageEl,
+    isFirst?: boolean
 }) {
+    console.log(imageEl.image?.url);
     if (imageEl.image?.url) {
         return (
             <div className="image-element__wrapper">
                 <div className="image-element__container">
-                    <div className="image__wrapper" style={{ aspectRatio: imageEl.image?.metadata?.dimensions?.aspectRatio || 1 }}>
-                        <Zoom zoomImg={{ sizes: "100%", src: imageEl.image?.url }} zoomMargin={20} >
-                            <Image style={{ aspectRatio: imageEl.image?.metadata?.dimensions?.aspectRatio || 1 }} src={imageEl.image?.url} alt={imageEl.alt || "Missing alt text here, sorry!"} fill sizes="(max-width: 768px) 100vw, 50vw" quality={50} />
-                        </Zoom>
-                    </div>
+                    <Zoom zoomMargin={20} >
+                        <div className="image__wrapper" style={{ aspectRatio: imageEl.image?.metadata?.dimensions?.aspectRatio || 1 }}>
+                            <Image priority={isFirst} style={{ aspectRatio: imageEl.image?.metadata?.dimensions?.aspectRatio || 1 }} src={imageEl.image?.url} alt={imageEl.alt || "Missing alt text here, sorry!"} fill sizes="(max-width: 768px) 100vw, 50vw" quality={50} />
+                        </div>
+                    </Zoom>
                     <div className="image__caption">
                         <PortableText value={imageEl?.caption || []} />
                     </div>
                     <span className="text-element__updated-at">Updated on {extractDate(imageEl._updatedAt)}</span>
                 </div>
-            </div>
+            </div >
         )
     }
     return null;
