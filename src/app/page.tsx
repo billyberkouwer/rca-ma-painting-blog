@@ -11,7 +11,7 @@ export async function generateMetadata() {
   })
 
   const metadata = data?.pageMeta;
-  
+
   return {
     robots: {
       index: true,
@@ -48,7 +48,9 @@ export async function generateMetadata() {
 export default async function Home() {
   const { isEnabled } = await draftMode();
   const { data } = await sanityFetch({
-    query: homepageQuery, perspective: isEnabled ? "previewDrafts" : "published"
+    query: homepageQuery, perspective: isEnabled ? "previewDrafts" : "published", params: {
+      tags: ["homepage"]
+    }
   })
 
   if (!data) {

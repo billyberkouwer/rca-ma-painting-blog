@@ -1,6 +1,6 @@
 // ./src/app/api/revalidate-path/route.ts
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { type NextRequest, NextResponse } from 'next/server'
 import { parseBody } from 'next-sanity/webhook'
 
@@ -22,8 +22,9 @@ export async function POST(req: NextRequest) {
             return new Response(JSON.stringify({ message, isValidSignature, body }), { status: 401 })
         }
         
-        console.log("Revalidating path");
+        console.log("Revalidating path: " + "/");
         revalidatePath("/");
+        revalidateTag("homepage");
 
         const message = `Updated routes`
         return NextResponse.json({ body, message })
