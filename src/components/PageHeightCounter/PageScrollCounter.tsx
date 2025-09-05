@@ -41,9 +41,6 @@ export default function PageScrollCounter() {
       >
         {scrollPercentage}%
       </span>
-      <Link href="https://billyberkouwer.dev">
-        <div className="dark-theme">Run by Billy Myles-Berkouwer</div>
-      </Link>
     </div>
 
   );
