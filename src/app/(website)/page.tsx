@@ -75,6 +75,7 @@ export default async function Home() {
             id={post._id}
             image={post.imageArray?.images?.[0]?.asset}
             updatedAt={post._updatedAt}
+            createdAt={post.createdAt}
           />
         ))}
       </PostTilesWrapper>

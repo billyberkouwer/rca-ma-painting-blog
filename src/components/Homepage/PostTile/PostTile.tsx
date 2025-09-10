@@ -5,7 +5,7 @@ import Link from "next/link";
 import "./post-tile.scss";
 import { extractDate } from "@/helpers";
 
-export default function PostTile({ title, text, id, image, color = "white", updatedAt }: { title: string   | null, text: PortableTextBlock[] | PortableTextBlock | null, id: string, image: SanityImageAsset | null | undefined, color?: string, updatedAt?: string }) {
+export default function PostTile({ title, text, id, image, color = "white", updatedAt, createdAt }: { title: string   | null, text: PortableTextBlock[] | PortableTextBlock | null, id: string, image: SanityImageAsset | null | undefined, color?: string, updatedAt?: string, createdAt?: string | null }) {
     // Debug logging
     console.log('PostTile text prop:', text);
     console.log(text)
@@ -36,7 +36,7 @@ export default function PostTile({ title, text, id, image, color = "white", upda
             <p>{truncatedText}</p>
             <div className="tile-footer__wrapper">
                 <p className="read-more">Read More</p>
-                <p className="updated-at">{updatedAt ? extractDate(updatedAt) : ""}</p>
+                <p className="updated-at">{createdAt ? extractDate(createdAt) : (updatedAt ? extractDate(updatedAt) : "")}</p>
             </div>
         </Link>
     )

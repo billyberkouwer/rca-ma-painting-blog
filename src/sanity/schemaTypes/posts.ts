@@ -20,5 +20,11 @@ export const postsSchema = defineType({
             name: "imageArray",
             type: "imageArray",
         }),
+        defineField({
+            name: "createdAt",
+            title: "Created At",
+            type: "datetime",
+            description: "Custom creation date (optional). If not set, will use the document's creation date.",
+        }),
     ],
 })

@@ -85,6 +85,7 @@ export type Posts = {
     _key: string;
   }>;
   imageArray?: ImageArray;
+  createdAt?: string;
 };
 
 export type PageMeta = {
@@ -509,7 +510,7 @@ export type HomepageMetaQueryResult = {
   } | null;
 } | null;
 // Variable: postsQuery
-// Query: *[_type == "posts"] | order(_createdAt desc) {    _id,    _createdAt,    _updatedAt,    title,    textContent,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
+// Query: *[_type == "posts"] | order(_createdAt desc) {    _id,    _createdAt,    _updatedAt,    title,    textContent,    createdAt,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
 export type PostsQueryResult = Array<{
   _id: string;
   _createdAt: string;
@@ -533,6 +534,7 @@ export type PostsQueryResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  createdAt: string | null;
   imageArray: {
     _type: "imageArray";
     images: Array<{
@@ -586,7 +588,7 @@ export type PostsQueryResult = Array<{
   } | null;
 }>;
 // Variable: postsPaginatedQuery
-// Query: *[_type == "posts"] | order(_createdAt desc) [$start...$end] {    _id,    _createdAt,    _updatedAt,    title,    textContent,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
+// Query: *[_type == "posts"] | order(_createdAt desc) [$start...$end] {    _id,    _createdAt,    _updatedAt,    title,    textContent,    createdAt,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
 export type PostsPaginatedQueryResult = Array<{
   _id: string;
   _createdAt: string;
@@ -610,6 +612,7 @@ export type PostsPaginatedQueryResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  createdAt: string | null;
   imageArray: {
     _type: "imageArray";
     images: Array<{
@@ -663,7 +666,7 @@ export type PostsPaginatedQueryResult = Array<{
   } | null;
 }>;
 // Variable: postsInitialQuery
-// Query: *[_type == "posts"] | order(_createdAt desc) [0...20] {    _id,    _createdAt,    _updatedAt,    title,    textContent,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
+// Query: *[_type == "posts"] | order(_createdAt desc) [0...20] {    _id,    _createdAt,    _updatedAt,    title,    textContent,    createdAt,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
 export type PostsInitialQueryResult = Array<{
   _id: string;
   _createdAt: string;
@@ -687,6 +690,7 @@ export type PostsInitialQueryResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  createdAt: string | null;
   imageArray: {
     _type: "imageArray";
     images: Array<{
@@ -743,7 +747,7 @@ export type PostsInitialQueryResult = Array<{
 // Query: count(*[_type == "posts"])
 export type PostsCountQueryResult = number;
 // Variable: postByIdQuery
-// Query: *[_type == "posts" && _id == $id][0] {    ...,    _id,    _createdAt,    _updatedAt,    title,    textContent,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
+// Query: *[_type == "posts" && _id == $id][0] {    ...,    _id,    _createdAt,    _updatedAt,    title,    textContent,    createdAt,    "imageArray": imageArray{        ...,        "images": images[]{            ...,            "asset": asset->        }    }}
 export type PostByIdQueryResult = {
   _id: string;
   _type: "posts";
@@ -820,6 +824,7 @@ export type PostByIdQueryResult = {
       _key: string;
     }>;
   } | null;
+  createdAt: string | null;
 } | null;
 // Variable: aboutMetaQuery
 // Query: *[_type == "about"][0] {    "pageMeta": pageMeta{        keywords,        _updatedAt,        title,        description,        ogType,        ogTitle,        ogDescription,        "ogImage": image.asset->    }}
@@ -920,11 +925,11 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"index\"][0] {\n    ...,\n    \"elements\": elements[] | order(@->._createdAt desc) {\n        _type,\n        _ref,\n        ...@-> {\n            _type,\n            ...select(\n                _type == \"imageBlock\" => {\n                    _createdAt,\n                    _updatedAt,\n                    \"image\": image.asset->{\n                        ...\n                    },\n                    alt,\n                    caption\n                },\n                _type == \"textBlock\" => {\n                    _createdAt,\n                    _updatedAt,\n                    title,\n                    text\n                }\n            )\n        }\n    }\n  }": HomepageQueryResult;
     "*[_type == \"index\"][0] {\n     \"pageMeta\": pageMeta{\n        keywords,\n        _updatedAt,\n        title,\n        description,\n        ogType,\n        ogTitle,\n        ogDescription,\n        \"ogImage\": image.asset->\n     }\n    }\n  ": HomepageMetaQueryResult;
-    "*[_type == \"posts\"] | order(_createdAt desc) {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostsQueryResult;
-    "*[_type == \"posts\"] | order(_createdAt desc) [$start...$end] {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostsPaginatedQueryResult;
-    "*[_type == \"posts\"] | order(_createdAt desc) [0...20] {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostsInitialQueryResult;
+    "*[_type == \"posts\"] | order(_createdAt desc) {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    createdAt,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostsQueryResult;
+    "*[_type == \"posts\"] | order(_createdAt desc) [$start...$end] {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    createdAt,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostsPaginatedQueryResult;
+    "*[_type == \"posts\"] | order(_createdAt desc) [0...20] {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    createdAt,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostsInitialQueryResult;
     "count(*[_type == \"posts\"])": PostsCountQueryResult;
-    "*[_type == \"posts\" && _id == $id][0] {\n    ...,\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostByIdQueryResult;
+    "*[_type == \"posts\" && _id == $id][0] {\n    ...,\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    createdAt,\n    \"imageArray\": imageArray{\n        ...,\n        \"images\": images[]{\n            ...,\n            \"asset\": asset->\n        }\n    }\n}": PostByIdQueryResult;
     "*[_type == \"about\"][0] {\n    \"pageMeta\": pageMeta{\n        keywords,\n        _updatedAt,\n        title,\n        description,\n        ogType,\n        ogTitle,\n        ogDescription,\n        \"ogImage\": image.asset->\n    }\n}": AboutMetaQueryResult;
     "*[_type == \"about\"][0] {\n    _id,\n    _createdAt,\n    _updatedAt,\n    title,\n    textContent,\n    \"pageMeta\": pageMeta{\n        keywords,\n        _updatedAt,\n        title,\n        description,\n        ogType,\n        ogTitle,\n        ogDescription,\n        \"ogImage\": image.asset->\n    }\n}": AboutQueryResult;
   }

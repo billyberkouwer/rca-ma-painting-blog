@@ -10,6 +10,7 @@ interface Post {
   _id: string;
   title: string;
   textContent: PortableTextBlock[];
+  createdAt?: string;
   imageArray: {
     images: Array<{
       asset: SanityImageAsset;
@@ -97,6 +98,7 @@ export default function LoadMorePosts({ initialPostsCount, totalCount }: LoadMor
           text={post.textContent}
           id={post._id}
           image={post.imageArray.images[0]?.asset}
+          createdAt={post.createdAt}
         />
       ))}
       {loading && (

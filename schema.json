@@ -585,6 +585,13 @@
           "name": "imageArray"
         },
         "optional": true
+      },
+      "createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },

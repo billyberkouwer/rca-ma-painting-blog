@@ -51,6 +51,7 @@ export const postsQuery = defineQuery(`*[_type == "posts"] | order(_createdAt de
     _updatedAt,
     title,
     textContent,
+    createdAt,
     "imageArray": imageArray{
         ...,
         "images": images[]{
@@ -66,6 +67,7 @@ export const postsPaginatedQuery = defineQuery(`*[_type == "posts"] | order(_cre
     _updatedAt,
     title,
     textContent,
+    createdAt,
     "imageArray": imageArray{
         ...,
         "images": images[]{
@@ -81,6 +83,7 @@ export const postsInitialQuery = defineQuery(`*[_type == "posts"] | order(_creat
     _updatedAt,
     title,
     textContent,
+    createdAt,
     "imageArray": imageArray{
         ...,
         "images": images[]{
@@ -99,6 +102,7 @@ export const postByIdQuery = defineQuery(`*[_type == "posts" && _id == $id][0] {
     _updatedAt,
     title,
     textContent,
+    createdAt,
     "imageArray": imageArray{
         ...,
         "images": images[]{
