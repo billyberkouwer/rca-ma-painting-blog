@@ -3,4 +3,9 @@
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     padding: 3rem 0;
+
+    .text-element__container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 }
