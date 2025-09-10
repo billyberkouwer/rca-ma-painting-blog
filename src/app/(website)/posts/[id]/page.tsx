@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const { data }: { data: PostByIdQueryResult } = await sanityFetch({
-        query: postByIdQuery, perspective: "published", params: { id }
+        query: postByIdQuery, perspective: "published", params: { id }, tags: [`posts-${id}`]
     })
 
     const metadata = data?.pageMeta;
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             },
         },
         keywords: metadata?.keywords ?? "art, painting, blog, RCA, MA",
-        title: metadata?.ogTitle ?? data?.title + " | Post | RCA MA Painting Blog 2025 / 2026" ?? "",
+        title: metadata?.ogTitle ?? data?.title + " | Post | RCA MA Painting Blog 2025 / 2026",
         creator: "Billy Myles-Berkouwer",
         publisher: "Billy Myles-Berkouwer",
         description: metadata?.description ?? data?.textContent?.[0]?.children?.[0]?.text ?? "",
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         },
         openGraph: {
             images: metadata?.ogImage?.url ?? data?.imageArray?.images?.[0]?.asset?.url ?? "",
-            title: metadata?.ogTitle ?? data?.title + " | Post | RCA MA Painting Blog 2025 / 2026" ?? "",
+            title: metadata?.ogTitle ?? data?.title + " | Post | RCA MA Painting Blog 2025 / 2026",
             type: "website",
             description: metadata?.description ?? data?.textContent?.[0]?.children?.[0]?.text ?? "",
             publishedTime: metadata?._updatedAt ?? data?._updatedAt ?? "",

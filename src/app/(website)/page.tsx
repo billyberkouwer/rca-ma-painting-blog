@@ -8,7 +8,7 @@ import LoadMorePosts from "@/components/Homepage/LoadMorePosts/LoadMorePosts";
 
 export async function generateMetadata() {
   const { data }: { data: HomepageMetaQueryResult } = await sanityFetch({
-    query: homepageMetaQuery, perspective: "published"
+    query: homepageMetaQuery, perspective: "published", tags: ["homepage"]
   })
 
   const metadata = data?.pageMeta;
@@ -51,11 +51,13 @@ export default async function Home() {
   const [postsResult, countResult] = await Promise.all([
     sanityFetch({
       query: postsInitialQuery,
-      perspective: "published"
+      perspective: "published",
+      tags: ["homepage"]
     }),
     sanityFetch({
       query: postsCountQuery,
-      perspective: "published"
+      perspective: "published",
+      tags: ["homepage"]
     })
   ]);
 

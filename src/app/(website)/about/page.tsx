@@ -8,7 +8,7 @@ import "./page.scss";
 
 export async function generateMetadata() {
     const { data }: { data: AboutMetaQueryResult } = await sanityFetch({
-        query: aboutMetaQuery, perspective: "published"
+        query: aboutMetaQuery, perspective: "published", tags: ["about"]
     })
 
     const metadata = data?.pageMeta;
@@ -47,7 +47,7 @@ export async function generateMetadata() {
 }
 
 export default async function About() {
-    const { data } = await sanityFetch({ query: aboutQuery, perspective: "published" });
+    const { data } = await sanityFetch({ query: aboutQuery, perspective: "published", tags: ["about"] });
     return (
         <PageContentWrapper>
             <h1>{data?.title || "About"}</h1>
