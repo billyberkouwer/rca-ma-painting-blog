@@ -16,7 +16,14 @@ export default function ImageElement({ imageEl, isFirst = false, altText, zoom =
                 <div className="image-element__wrapper">
                     <div className="image-element__container">
                         <div className="image__wrapper" style={{ aspectRatio: imageEl.metadata?.dimensions?.aspectRatio || 1 }}>
-                            <Image priority={isFirst} style={{ aspectRatio: imageEl.metadata?.dimensions?.aspectRatio || 1 }} src={imageEl.url} alt={altText || "Missing alt text here, sorry!"} fill sizes="(max-width: 768px) 100vw, 50vw" quality={50} />
+                            <Image placeholder="blur" 
+                            blurDataURL={imageEl.metadata?.lqip || ""} 
+                            priority={isFirst} 
+                            style={{ aspectRatio: imageEl.metadata?.dimensions?.aspectRatio || 1 }} 
+                            src={imageEl.url} alt={altText || "Missing alt text here, sorry!"} 
+                            fill 
+                            sizes="(max-width: 526px) 100vw, (max-width: 768px) 50vw, 33vw" 
+                            quality={50} />
                         </div>
                     </div>
                 </div >
