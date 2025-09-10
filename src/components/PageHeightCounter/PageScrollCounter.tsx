@@ -15,7 +15,7 @@ export default function PageScrollCounter() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       // Calculate the percentage (0-100)
-      const percentage = documentHeight > 0 ? Math.round((scrollTop / documentHeight) * 100) : 0;
+      const percentage = documentHeight > 0 ? Math.min(Math.round((scrollTop / documentHeight) * 100), 100) : 0;
 
       setScrollPercentage(percentage);
     };
