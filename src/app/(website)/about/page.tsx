@@ -4,6 +4,7 @@ import { aboutMetaQuery, aboutQuery } from "@/sanity/lib/queries";
 import { AboutMetaQueryResult } from "@/types/sanityTypes";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
+import "./page.scss";
 
 export async function generateMetadata() {
     const { data }: { data: AboutMetaQueryResult } = await sanityFetch({
@@ -44,7 +45,6 @@ export async function generateMetadata() {
         },
     };
 }
-
 
 export default async function About() {
     const { data } = await sanityFetch({ query: aboutQuery, perspective: "published" });

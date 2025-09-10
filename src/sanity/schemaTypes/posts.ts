@@ -26,5 +26,10 @@ export const postsSchema = defineType({
             type: "datetime",
             description: "Custom creation date (optional). If not set, will use the document's creation date.",
         }),
+        defineField({
+            name: "pageMeta",
+            title: "Page Meta",
+            type: "pageMeta",
+        })
     ],
 })

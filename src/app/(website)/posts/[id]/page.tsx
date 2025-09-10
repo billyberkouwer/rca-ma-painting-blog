@@ -7,7 +7,9 @@ import { postByIdQuery, postsQuery } from "@/sanity/lib/queries";
 import "./page.scss";
 import { PortableText } from "next-sanity";
 import { extractDate } from "@/helpers";
-import { PostsQueryResult } from "@/types/sanityTypes";
+import { PostByIdQueryResult, PostsQueryResult } from "@/types/sanityTypes";
+
+
 
 export async function generateStaticParams() {
     const posts: PostsQueryResult = await client.fetch(postsQuery);
@@ -16,7 +18,49 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const { data }: { data: PostByIdQueryResult } = await sanityFetch({
+        query: postByIdQuery, perspective: "published", params: { id }
+    })
+
+    const metadata = data?.pageMeta;
+
+    return {
+        robots: {
+            index: true,
+            follow: true,
+            nocache: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                noimageindex: false,
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
+            },
+        },
+        keywords: metadata?.keywords ?? "",
+        title: metadata?.ogTitle ?? data?.title ?? "",
+        creator: "Billy Myles-Berkouwer",
+        publisher: "Billy Myles-Berkouwer",
+        description: metadata?.description ?? data?.textContent?.[0]?.children?.[0]?.text ?? "",
+        alternates: {
+            canonical: `/posts/${id}`,
+        },
+        openGraph: {
+            images: metadata?.ogImage?.url ?? data?.imageArray?.images?.[0]?.asset?.url ?? "",
+            title: metadata?.ogTitle ?? data?.title ?? "",
+            type: "website",
+            description: metadata?.description ?? data?.textContent?.[0]?.children?.[0]?.text ?? "",
+            publishedTime: metadata?._updatedAt ?? data?._updatedAt ?? "",
+            authors: ["Billy Myles-Berkouwer"],
+        },
+    };
+}
+
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const { data } = await sanityFetch({ query: postByIdQuery, params: { id } });
     return (
@@ -31,7 +75,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 <PortableText value={data?.imageArray?.caption || []} />
             </div>
             <TextElement textEl={data?.textContent} />
-            {data?._updatedAt && <p className="text-element__updated-at">Updated on {extractDate(data?._updatedAt)}</p>}
+            {data?._updatedAt && <p className="text-element__updated-at">Created on {data?.createdAt ? extractDate(data?.createdAt) : extractDate(data?._createdAt)}</p>}
         </PageContentWrapper>
     )
 } 

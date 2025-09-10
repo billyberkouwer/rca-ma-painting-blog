@@ -45,7 +45,7 @@ export const homepageMetaQuery = defineQuery(
     }
   `);
 
-export const postsQuery = defineQuery(`*[_type == "posts"] | order(_createdAt desc) {
+export const postsQuery = defineQuery(`*[_type == "posts"] | order(coalesce(createdAt, _createdAt) desc) {
     _id,
     _createdAt,
     _updatedAt,
@@ -61,7 +61,7 @@ export const postsQuery = defineQuery(`*[_type == "posts"] | order(_createdAt de
     }
 }`);
 
-export const postsPaginatedQuery = defineQuery(`*[_type == "posts"] | order(_createdAt desc) [$start...$end] {
+export const postsPaginatedQuery = defineQuery(`*[_type == "posts"] | order(coalesce(createdAt, _createdAt) desc) [$start...$end] {
     _id,
     _createdAt,
     _updatedAt,
@@ -77,7 +77,7 @@ export const postsPaginatedQuery = defineQuery(`*[_type == "posts"] | order(_cre
     }
 }`);
 
-export const postsInitialQuery = defineQuery(`*[_type == "posts"] | order(_createdAt desc) [0...20] {
+export const postsInitialQuery = defineQuery(`*[_type == "posts"] | order(coalesce(createdAt, _createdAt) desc) [0...20] {
     _id,
     _createdAt,
     _updatedAt,
@@ -109,6 +109,16 @@ export const postByIdQuery = defineQuery(`*[_type == "posts" && _id == $id][0] {
             ...,
             "asset": asset->
         }
+    },
+    "pageMeta": pageMeta{
+        keywords,
+        _updatedAt,
+        title,
+        description,
+        ogType,
+        ogTitle,
+        ogDescription,
+        "ogImage": image.asset->
     }
 }`);
 
