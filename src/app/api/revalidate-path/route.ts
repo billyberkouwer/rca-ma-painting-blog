@@ -4,7 +4,7 @@ import { revalidatePath, revalidateTag } from 'next/cache'
 import { type NextRequest, NextResponse } from 'next/server'
 import { parseBody } from 'next-sanity/webhook'
 
-type WebhookPayload = { id?: string, type?: string, isPage?: boolean }
+type WebhookPayload = { _id?: string, type?: string, isPage?: boolean }
 
 export async function POST(req: NextRequest) {
     try {
@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
         revalidatePath("/");
         revalidateTag("homepage");
 
-        if (body?.id) {
-            revalidateTag(`posts-${body.id}`);
-            revalidatePath(`/posts/${body.id}`);
+        if (body?._id) {
+            revalidateTag(`posts-${body._id}`);
+            revalidatePath(`/posts/${body._id}`);
         }
 
         const message = `Updated routes`
