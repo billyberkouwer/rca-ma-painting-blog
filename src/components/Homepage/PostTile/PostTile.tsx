@@ -6,9 +6,6 @@ import "./post-tile.scss";
 import { extractDate } from "@/helpers";
 
 export default function PostTile({ title, text, id, image, color = "white", updatedAt, createdAt }: { title: string   | null, text: PortableTextBlock[] | PortableTextBlock | null, id: string, image: SanityImageAsset | null | undefined, color?: string, updatedAt?: string, createdAt?: string | null }) {
-    // Debug logging
-    console.log('PostTile text prop:', text);
-    console.log(text)
     // Extract text content from portable text blocks
     const textContent = text && Array.isArray(text)
         ? text
