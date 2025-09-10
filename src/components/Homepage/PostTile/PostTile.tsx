@@ -28,7 +28,7 @@ export default function PostTile({ title, text, id, image, color = "white", upda
 
     return (
         <Link href={`/posts/${id}`} className="post-tile__wrapper" style={{ backgroundColor: color }}>
-            <h3>{title}</h3>
+            <h2>{title}</h2>
             <ImageElement imageEl={image || null} zoom={false} />
             <p>{truncatedText}</p>
             <div className="tile-footer__wrapper">
