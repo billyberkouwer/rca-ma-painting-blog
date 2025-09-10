@@ -65,7 +65,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     const { data } = await sanityFetch({ query: postByIdQuery, params: { id } });
     return (
         <PageContentWrapper>
-            <h1>{data?.title}</h1>
+            <h1 style={{fontSize: "1.5rem"}}>{data?.title}</h1>
             <div className="images-array__wrapper">
                 {data?.imageArray?.images?.map((image, i) => (
                     <ImageElement key={image._key} imageEl={image.asset || null} altText={data?.imageArray?.alt + " " + (i + 1)} isFirst={i === 0} />
