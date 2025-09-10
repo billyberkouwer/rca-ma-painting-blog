@@ -1,0 +1,8 @@
+@use "@/styles/helpers" as helpers;
+
+
+.post-tiles__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}

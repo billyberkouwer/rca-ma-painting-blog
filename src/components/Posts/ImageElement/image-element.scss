@@ -1,8 +1,9 @@
+@use "@/styles/helpers" as helpers;
+
 .image__wrapper {
     position: relative;
     width: 100%;
     height: auto;
-    max-height: 600px;
 
     img {
         object-fit: contain;
@@ -11,10 +12,6 @@
         height: auto;
         position: relative;
     }
-}
-
-.image-element__wrapper {
-    margin-bottom: 5rem;
 }
 
 .image__caption {

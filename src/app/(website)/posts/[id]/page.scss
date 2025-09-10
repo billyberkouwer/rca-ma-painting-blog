@@ -1,0 +1,12 @@
+@use "@/styles/helpers" as helpers;
+
+.images-array__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.images-array__caption {
+    margin-bottom: 5rem;
+}

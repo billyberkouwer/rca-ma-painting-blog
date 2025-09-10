@@ -6,8 +6,11 @@ export default function Navbar() {
             <ul className="navbar__container">
                 <li className="page-title">
                     <Link href="/">
-                        <h1 className="dark-theme">RCA MA Painting 2025 / 2026</h1>
+                        <h1 className="dark-theme">RCA MA Painting Blog 2025 / 2026</h1>
                     </Link>
+                </li>
+                <li className="about-link">
+                    <Link href="/about" className="dark-theme">About</Link>
                 </li>
             </ul>
         </nav>

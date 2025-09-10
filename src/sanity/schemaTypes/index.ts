@@ -1,5 +1,7 @@
 import { defineField, defineType, type SchemaTypeDefinition } from 'sanity'
 import { pageMeta } from '../pageMeta'
+import { postsSchema } from './posts'
+import { aboutSchema } from './about'
 
 const IndexDocument = defineType({
   type: "document",
@@ -18,7 +20,7 @@ const IndexDocument = defineType({
       of: [
         {
           type: "reference",
-          to: [{ type: "imageBlock" }, {type: "textBlock"}],
+          to: [{ type: "imageBlock" }, { type: "textBlock" }],
         },
       ],
     }),
@@ -38,6 +40,31 @@ export const ImageType = defineType({
       type: "image",
       name: "image",
       title: "Image",
+    }),
+    defineField({
+      type: "string",
+      name: "alt",
+      title: "Alt",
+    }),
+    defineField({
+      type: "array",
+      of: [{ type: "block" }],
+      name: "caption",
+      title: "Caption",
+    })
+  ]
+})
+
+export const ImageArrayType = defineType({
+  type: "object",
+  name: "imageArray",
+  title: "Image Collection",
+  fields: [
+    defineField({
+      type: "array",
+      name: "images",
+      title: "Images",
+      of: [{ type: "image" }],
     }),
     defineField({
       type: "string",
@@ -73,5 +100,5 @@ export const TextType = defineType({
 })
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [IndexDocument, TextType, ImageType, pageMeta],
+  types: [IndexDocument, TextType, ImageType, ImageArrayType, pageMeta, postsSchema, aboutSchema],
 }

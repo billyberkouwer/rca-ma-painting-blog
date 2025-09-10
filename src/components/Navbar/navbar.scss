@@ -1,0 +1,52 @@
+
+nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    mix-blend-mode: difference;
+
+    ul {
+        margin: 0;
+        padding: 0.5rem;
+        list-style-type: none;
+        width: fit-content;
+
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+
+        li {
+            padding: 0;
+            margin: 0;
+
+
+            div {
+                margin-bottom: 0.1rem;
+                line-height: 1em;
+            }
+
+            h1 {
+                margin: 0;
+                margin-bottom: 0.1rem;
+            }
+        }
+
+        .dark-theme {
+            mix-blend-mode: difference;
+        }
+    }
+
+    .about-link {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 0.5rem;
+    }
+}

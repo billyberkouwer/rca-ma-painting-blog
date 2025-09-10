@@ -1,0 +1,246 @@
+@use 'sass:math';
+@use 'sass:list';
+@use "./_variables.module.scss" as variables;
+
+@mixin glitch-in {
+    @keyframes glitch-in {
+        @for $i from 1 to 20 {
+            $per: math.div(100%, 20) * $i;
+            $visibility: (
+                visible,
+                hidden
+            );
+        $skew: (
+            scaleY(1000%),
+            scaleY(0%),
+            scaleY(0%),
+            scaleY(600%),
+            scaleY(2000%),
+            scaleY(100%),
+            scaleY(5000%),
+        );
+    $top: (
+        5px,
+        -5px,
+        0px,
+        0px
+    );
+$blur: (
+    blur(3px),
+    blur(0px),
+);
+$opacity: (
+    50%,
+    100%,
+);
+$arrayT: math.random(4);
+$arrayO: math.random(2);
+$arrayB: math.random(2);
+$arrayV: math.random(2);
+$arrayS: math.random(7);
+
+#{$per} {
+    position: relative;
+    visibility: list.nth($visibility, $arrayV);
+    filter: list.nth($blur, $arrayB);
+    opacity: list.nth($opacity, $arrayO);
+    // top: list.nth($top, $arrayT);
+    // transform: list.nth($skew, $arrayS);
+}
+}
+}
+}
+
+
+@keyframes new-glitch {
+    0% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    9% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    9.25% {
+        font-family: var(--font-ascemic);
+        font-style: italic;
+        line-height: 0.4em;
+    }
+
+    9.5% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    33.5% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    33.75% {
+        font-family: var(--font-ascemic);
+        font-style: italic;
+        line-height: 0.4em;
+    }
+
+    34% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    80% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    80.25% {
+        font-family: var(--font-ascemic);
+        line-height: 0.4em;
+        font-style: normal;
+    }
+
+    80.5% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: italic;
+        line-height: 1em;
+    }
+
+    80.75% {
+        font-family: var(--font-ascemic);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    81% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+
+    100% {
+        font-family: var(--font-nimbus-condensed);
+        font-style: normal;
+        line-height: 1em;
+    }
+}
+
+
+@mixin glitch {
+    @keyframes glitch {
+        @for $i from 1 to 50 {
+            $per: math.div(100%, 50) * $i;
+            $weight: (
+                100,
+                200,
+                300,
+                400,
+                500,
+                600,
+                700
+            );
+        $style: (
+            normal,
+            italic,
+            normal,
+            normal
+        );
+    $decor: (
+        auto,
+        auto,
+        lowercase,
+        underline,
+        auto,
+        auto,
+        auto
+    );
+$trans: (
+    none,
+    none,
+    uppercase,
+    lowercase,
+    capitalize,
+    none,
+    none,
+    none,
+    none,
+    none,
+    none
+);
+$fonts: (
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-ascemic),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+    var(--font-nimbus-condensed),
+);
+
+$arrayW: math.random(7);
+$arrayS: math.random(4);
+$arrayD: math.random(7);
+$arrayT: math.random(11);
+$arrayF: math.random(50);
+
+#{$per} {
+    // font-weight: list.nth($weight, $arrayW);
+    // font-style: list.nth($style, $arrayS);
+    font-family: list.nth($fonts, $arrayF);
+    // text-decoration: list.nth($decor, $arrayD);
+    // text-transform: list.nth($trans, $arrayT);
+}
+}
+}
+}

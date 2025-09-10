@@ -1,7 +1,4 @@
-import Navbar from "@/components/Navbar/Navbar";
-import PageScrollCounter from "@/components/PageHeightCounter/PageScrollCounter";
 import localFont from "next/font/local";
-import "./global.scss"
 
 const NimbusCondensed = localFont({
   src: "./fonts/NimbusSanL-ReguCond.ttf",
@@ -24,9 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${NimbusCondensed.variable} ${Nimbus.variable}`}>
-        <Navbar />
         {children}
-        <PageScrollCounter />
       </body>
     </html>
   );

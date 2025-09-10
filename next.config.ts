@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
       },
     ],
     qualities: [50]
+  },
+  experimental: {
+    viewTransition: true
   }
 };
 

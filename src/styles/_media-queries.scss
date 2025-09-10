@@ -1,0 +1,8 @@
+@use "./_breakpoints.module" as *;
+
+@mixin media-breakpoint($breakpoint) {
+  @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+

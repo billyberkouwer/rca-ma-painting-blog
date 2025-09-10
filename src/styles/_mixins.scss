@@ -1,0 +1,65 @@
+@mixin unstyle-button {
+    background-color: transparent;
+    border-width: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
+}
+
+@mixin themify($themes) {
+    @each $name, $values in $themes {
+        .#{$name}-theme {
+            $theme-map: $values !global;
+            @content;
+        }
+    }
+}
+
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}
+
+@mixin hide-scrollbar {
+    // Prevent scroll chaining to body (especially important for iOS)
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    // Additional iOS-specific properties to prevent body scroll
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+
+    // Hide scrollbars on iOS Safari
+    -webkit-scrollbar-width: none;
+    /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+
+    // WebKit browsers (Chrome, Safari, Edge)
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        display: none;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        display: none;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-corner {
+        display: none;
+        background: transparent;
+    }
+}

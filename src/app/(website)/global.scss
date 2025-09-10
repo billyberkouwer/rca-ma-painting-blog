@@ -1,0 +1,33 @@
+html {
+    cursor: url('/ms-paint-brush.svg') 0 40, default;
+}
+
+a {
+    cursor: url('/ms-paint-brush-link.svg') 0 40, pointer;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--font-nimbus-condensed);
+}
+
+.text-element__updated-at {
+    display: block;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+
+.dark-theme {
+    background-color: #fff;
+    color: #000;
+    width: fit-content;
+    position: relative;
+}
+
+/* View transitions - using CSS custom properties for better browser support */
+:root {
+    view-transition-name: root;
+}

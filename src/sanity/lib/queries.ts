@@ -28,6 +28,8 @@ export const homepageQuery = defineQuery(`*[_type == "index"][0] {
     }
   }`)
 
+
+
 export const homepageMetaQuery = defineQuery(
     `*[_type == "index"][0] {
      "pageMeta": pageMeta{
@@ -42,3 +44,97 @@ export const homepageMetaQuery = defineQuery(
      }
     }
   `);
+
+export const postsQuery = defineQuery(`*[_type == "posts"] | order(_createdAt desc) {
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    textContent,
+    "imageArray": imageArray{
+        ...,
+        "images": images[]{
+            ...,
+            "asset": asset->
+        }
+    }
+}`);
+
+export const postsPaginatedQuery = defineQuery(`*[_type == "posts"] | order(_createdAt desc) [$start...$end] {
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    textContent,
+    "imageArray": imageArray{
+        ...,
+        "images": images[]{
+            ...,
+            "asset": asset->
+        }
+    }
+}`);
+
+export const postsInitialQuery = defineQuery(`*[_type == "posts"] | order(_createdAt desc) [0...20] {
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    textContent,
+    "imageArray": imageArray{
+        ...,
+        "images": images[]{
+            ...,
+            "asset": asset->
+        }
+    }
+}`);
+
+export const postsCountQuery = defineQuery(`count(*[_type == "posts"])`);
+
+export const postByIdQuery = defineQuery(`*[_type == "posts" && _id == $id][0] {
+    ...,
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    textContent,
+    "imageArray": imageArray{
+        ...,
+        "images": images[]{
+            ...,
+            "asset": asset->
+        }
+    }
+}`);
+
+export const aboutMetaQuery = defineQuery(`*[_type == "about"][0] {
+    "pageMeta": pageMeta{
+        keywords,
+        _updatedAt,
+        title,
+        description,
+        ogType,
+        ogTitle,
+        ogDescription,
+        "ogImage": image.asset->
+    }
+}`);
+
+export const aboutQuery = defineQuery(`*[_type == "about"][0] {
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    textContent,
+    "pageMeta": pageMeta{
+        keywords,
+        _updatedAt,
+        title,
+        description,
+        ogType,
+        ogTitle,
+        ogDescription,
+        "ogImage": image.asset->
+    }
+}`);
